@@ -1,9 +1,14 @@
 package com.gwh.seller.service;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.gwh.entity.Order;
+import com.gwh.entity.User;
 import com.gwh.entity.enums.OrderStatus;
 import com.gwh.entity.enums.OrderType;
 import com.gwh.seller.repositories.OrderRepository;
+import com.gwh.seller.repositories.UserRepository;
+import com.gwh.util.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -20,6 +25,9 @@ import java.util.UUID;
 public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    UserRepository repository;
 
     /**下单
      * 申购订单
@@ -75,14 +83,37 @@ public class OrderService {
         return order;
     }
 
-    // //按订单拥有者id查看所有订单
-    public List<Order> searchByOwnerId (String ownerId){
-    return orderRepository.findOrderTByChanUserId(ownerId);
+    // //按订单拥有者(token中的用户id)查看所有订单
+    public List<Order> searchByOwnerId (String token){
+        // 根据token获取user对象
+        User user = getUserByToken(token);
+        //验证token
+        boolean result = JWTUtil.checkToken(user,token);
+        if (result == true){
+            return orderRepository.findOrderTByChanUserId((user.getId()+""));
+        } else {
+            return null;
+        }
+
     }
 
-    // //按订单拥有者id查看申购状态订单
-    public List<Order> searchByOwnerIdAndOrderType(String ownerId,String orderType){
-       return orderRepository.findOrderTByChanUserIdAndOrderType(ownerId,orderType);
+    // 根据token获取user对象
+    public User getUserByToken(String token){
+        // 获取 token 中的 user username
+        String  username;
+        try {
+            username = JWT.decode(token).getAudience().get(0);
+        } catch (JWTDecodeException j) {
+            throw new RuntimeException("不存在该token");
+        }
+        //获取token的user
+        return repository.findUserByUsername(username);
     }
+
+
+    // //按订单拥有者id查看申购状态订单
+//    public List<Order> searchByOwnerIdAndOrderType(String ownerId,String orderType){
+//       return orderRepository.findOrderTByChanUserIdAndOrderType(ownerId,orderType);
+//    }
 
 }

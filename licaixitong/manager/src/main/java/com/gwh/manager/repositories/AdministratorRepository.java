@@ -11,5 +11,6 @@ import java.util.List;
 @Repository
 public interface AdministratorRepository extends JpaRepository<Administrator,String>, JpaSpecificationExecutor<Administrator> {
     Administrator findAdministratorByUsernameAndPassword(String username,String password);
+    Administrator findAdministratorByUsername(String username);
 }
 

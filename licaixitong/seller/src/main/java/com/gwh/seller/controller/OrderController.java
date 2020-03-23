@@ -3,7 +3,6 @@ package com.gwh.seller.controller;
 import com.gwh.entity.Order;
 import com.gwh.seller.params.OrderParam;
 import com.gwh.seller.service.OrderService;
-//import com.imooc.seller.params.OrderParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -61,10 +60,10 @@ public class OrderController {
         return order;
     }
 
-    //按订单拥有者id查看所有订单
+    //按订单拥有者token查看所有订单
     @GetMapping("searchByOwnerId")
-    public List<Order> searchByOwnerId (@RequestHeader String authId, @RequestHeader String sign,@RequestParam String id){
-        return orderService.searchByOwnerId(id);
+    public List<Order> searchByOwnerId (@RequestHeader String authId, @RequestHeader String sign,@RequestParam String token){
+        return orderService.searchByOwnerId(token);
 
     }
     //按订单拥有者id查看申购状态订单

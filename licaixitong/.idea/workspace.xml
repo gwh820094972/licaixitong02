@@ -238,6 +238,8 @@
       <workItem from="1584427091345" duration="8404000" />
       <workItem from="1584447278929" duration="7106000" />
       <workItem from="1584526243865" duration="2063000" />
+      <workItem from="1584882401164" duration="9115000" />
+      <workItem from="1584969359647" duration="6036000" />
     </task>
     <servers />
   </component>
@@ -261,6 +263,11 @@
           <url>file://$PROJECT_DIR$/seller/src/main/java/com/gwh/seller/repositories/UserRepository.java</url>
           <line>15</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/seller/src/main/java/com/gwh/seller/SellerApp.java</url>
+          <line>10</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -24,7 +24,7 @@ public class RSAUtilTest {
 
     @Test
     public void signTest(){
-        String text = "123456";
+        String text = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ1c2VyMSJ9.hTepYOH9qVD9MJRtani_2fX0hEWqNHrFc-IS2FGV3HI";
         String sign =RSAUtil.sign(text,privateKey);
         System.out.println(sign);
         System.out.println(RSAUtil.verify(text, sign, publicKey));

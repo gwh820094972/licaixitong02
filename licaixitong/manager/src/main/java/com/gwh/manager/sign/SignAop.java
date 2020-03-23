@@ -46,10 +46,10 @@ public class SignAop {
     //管理员登录拦截
     @Before(value = "execution(* com.gwh.manager.controller.*.*(..)) && args(authId,sign,username,..)")
     public void verify3(String authId, String sign, String username){
-        //根据authID获取公钥
-        String publicKey = signService.getPublicKey(authId);
-        //验证签名
-        Assert.isTrue(RSAUtil.verify(username,sign,publicKey),"验签失败");
+//        //根据authID获取公钥
+//        String publicKey = signService.getPublicKey(authId);
+//        //验证签名
+//        Assert.isTrue(RSAUtil.verify(username,sign,publicKey),"验签失败");
     }
     // 用户充值,扣除银行卡金额、用户提现，增加银行卡金额拦截
     @Before(value = "execution(* com.gwh.manager.controller.*.*(..)) && args(authId,sign,cardNum,..)")

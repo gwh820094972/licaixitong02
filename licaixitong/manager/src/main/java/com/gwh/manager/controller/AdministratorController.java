@@ -20,7 +20,7 @@ public class AdministratorController {
 
 //    登入
     @PostMapping("login")
-    public Administrator login(@RequestHeader String authId, @RequestHeader String sign,@RequestHeader  String username,  @RequestHeader  String password){
+    public String login(@RequestHeader String authId, @RequestHeader String sign,@RequestHeader  String username,  @RequestHeader  String password){
 
         return administratorService.login(username,password);
 

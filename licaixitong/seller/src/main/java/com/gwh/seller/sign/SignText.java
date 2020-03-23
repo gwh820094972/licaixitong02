@@ -6,6 +6,7 @@ import com.gwh.util.JsonUtil;
 
 /**
  * 签名明文接口
+ * 把Java对象转为JSON字符串
  * 为SignAop提供
  * 会使继承该接口的实现类也拥有下面的注解
  * 对传入的参数进行按字典排序和非空处理

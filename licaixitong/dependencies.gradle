@@ -23,6 +23,7 @@ ext {
             ],
             rsa:[
                     'commons-codec:commons-codec:1.8'
-            ]
+            ],
+            JWT:['com.auth0:java-jwt:3.4.0']
     ]
 }

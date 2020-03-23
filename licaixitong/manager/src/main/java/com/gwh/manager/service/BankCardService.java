@@ -15,7 +15,7 @@ public class BankCardService {
     @Autowired
     BankCardRepository bankCardRepository;
     //用户充值
-    public BankCard UserRecharge (String CardNum,String CardPassword,String amount){
+    public String UserRecharge (String CardNum,String CardPassword,String amount){
        BankCard result = bankCardRepository.findBankByBankCardNumAndPassword(CardNum,CardPassword);
               Assert.notNull(result,"银行卡密码错误");
 
@@ -29,14 +29,14 @@ public class BankCardService {
             BigDecimal subStr =CardBalance.subtract(amountBigDecimal);
             result.setBalance(subStr);
             bankCardRepository.saveAndFlush(result);
-            return result;
+            return result.getBalance().toString();
         } else {
             return null;
         }
     }
 
     //用户提现，增加银行卡金额
-    public BankCard userWithdraw (String CardNum,String amount){
+    public String  userWithdraw (String CardNum,String amount){
         BankCard result = bankCardRepository.findBankByBankCardNum(CardNum);
         Assert.notNull(result,"银行卡不能为空");
         //尽量用字符串的形式初始化，金额为BigDecimal类型
@@ -47,6 +47,6 @@ public class BankCardService {
         result.setBalance(addStr);
         bankCardRepository.saveAndFlush(result);
 
-        return result;
+        return result.getBalance().toString();
     }
 }

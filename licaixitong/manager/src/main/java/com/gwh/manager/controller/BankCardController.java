@@ -15,7 +15,7 @@ public class BankCardController {
     BankCardService bankCardService;
     //用户充值,扣除银行卡金额
     @PostMapping("/userRecharge")
-    public BankCard UserRecharge(@RequestHeader String authId, @RequestHeader String sign,
+    public String UserRecharge(@RequestHeader String authId, @RequestHeader String sign,
                                  @RequestHeader String cardNum, @RequestHeader String cardPassword,
                                  @RequestHeader String amount){
 
@@ -23,7 +23,7 @@ public class BankCardController {
     }
     //用户提现，增加银行卡金额
     @PostMapping("/userWithdraw")
-    public BankCard userWithdraw(@RequestHeader String authId, @RequestHeader String sign,
+    public String userWithdraw(@RequestHeader String authId, @RequestHeader String sign,
                                  @RequestHeader String cardNum, @RequestHeader String amount){
         return bankCardService.userWithdraw(cardNum,amount);
     }
